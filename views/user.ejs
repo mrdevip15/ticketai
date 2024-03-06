@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>TICKET AI</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css">
+        <link rel="icon" type="image/x-icon" href="https://amsterdaminstitute.com/assets/web/images/favicon.png" />
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    </head>
+<body class="nav-fixed">
+  
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav" >
+            <nav class="sidenav shadow-right sidenav-light" style="padding-top: 0px;">
+                <div class="sidenav-menu">
+                    <div class="nav accordion show" id="accordionSidenav" style="padding-top: 15px">
+
+                        <!-- Sidenav Menu Heading (Core)-->
+                        <!-- Sidenav Accordion (Dashboard)-->
+                        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="/" style="text-align: center;"><img src="img/logo.png" alt="logo"
+                            height="58px" ></a>
+                        <a class="nav-link" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                            <div class="nav-link-icon"><i data-feather="zap"></i></div>
+                            TICKET AI
+                            <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse show" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                            <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                <a class="nav-link active" href="/dashboard"><span class="nav-link-icon"><i data-feather="users"></i></span>
+                                    Pendaftar
+                                    <!-- <span class="badge bg-danger-soft text-danger ms-auto">5 baru</span> -->
+                                </a>
+                                <a class="nav-link" href="/verified-ticket"><span class="nav-link-icon"><i data-feather="user-check"></i></span>Ticket terverifikasi</a>
+                                <a class="nav-link" href="/logout"><span class="nav-link-icon"><i data-feather="log-out"></i></span> Keluar</a>
+                            </nav>
+                        </div>
+                        <!-- Sidenav Heading (Custom)-->
+                    
+                        
+            </nav>
+        </div>
+        <div id="layoutSidenav_content" style="top: 0;">
+            <main>
+                <header class="page-header page-header-dark bg-gradient-primary-to-secondary mb-4">
+                    <div class="container-xl px-4">
+                        <div class="page-header-content pt-4">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-auto mt-4">
+                                    <h1 class="page-header-title">
+                                        <div class="page-header-icon"><i data-feather="life-buoy"></i></div>
+                                        Pendaftar
+                                    </h1>
+                                    <!-- <div class="page-header-subtitle">Pusat verifikasi data pendaftar</div> -->
+                                </div>
+                            </div>
+                            <div class="page-header-search mt-4">
+                                <div class="input-group input-group-joined">
+                                    <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus />
+                                    <span class="input-group-text"><i data-feather="search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- Main page content-->
+                <div class="container-xl px-4">
+                    <h4 class="mb-0 mt-5">List pendaftar : Medical Tryout</h4>
+                    <hr class="mt-2 mb-4" />
+                    <div style="position: absolute; bottom: 1rem; right: 1rem;">
+                        <!-- Toast -->
+                        <div class="toast" id="toastNoAutohide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                            <div class="toast-header">
+                                <i data-feather="bell"></i>
+                                <strong class="mr-auto">Toast without Autohide</strong>
+                                <small class="text-muted ml-2">just now</small>
+                                <button class="ml-2 mb-1 btn-close" type="button" data-bs-dismiss="toast" aria-label="Close">                                                                </button>
+                            </div>
+                            <div class="toast-body">This is an example toast alert, you must close this toast alert manually.</div>
+                        </div>
+                    </div>
+
+                    <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>No. tel</th>
+                                <th>Tiket</th>
+                                <th>Kode Tiket</th>
+                        
+                                <th>Verifikasi ?</th>
+                                <th>Aksi</th>
+
+                            </tr>
+                        </thead>
+                    <tbody>
+                        <% ticket.forEach(function(item) { %>
+                            <tr>
+                                <td><%= item.fullname %></td>
+                                <td><%= item.email %></td>
+                                <td><%= item.tel %></td>
+                                <td><%= item.ticket %></td>
+                                <td><%= item._id %></td>
+                                <td><%= item.verified ? "Terverifikasi" : "Belum terverifikasi" %></td>
+                                <td><a href="/verify/<%= item._id %>" class="btn <%= !item.verified ? "btn-primary" : "btn-danger" %>"><%= !item.verified ? "Verifikasi" : "Batal" %></a></td>
+
+                            </tr>
+                          <% }); %>
+                    </tbody>
+    
+                    </table>
+              
+                </div>
+            </main>
+            <footer class="footer-admin mt-auto footer-light">
+                <div class="container-xl px-4">
+                    <div class="row">
+                        <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                        <div class="col-md-6 text-md-end small">
+                            <a href="#!">Privacy Policy</a>
+                            &middot;
+                            <a href="#!">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+                            
+        new DataTable('#example');
+
+        $("#toastNoAutohideTrigger").on("click", function(e) {
+            e.preventDefault();
+           
+        });
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            // Get the value of the 'error' parameter
+            const errorValue = urlParams.get('error');
+            
+            // Check if the value is 'verified'
+            if (errorValue === 'already-sent') {
+                alert("Email telah dikirim tidak bisa batal verifikasi lagi") // Ganti yang cantik kanda hahaha
+                console.log('Error is verified');
+                // Perform actions based on the 'error=verified' parameter
+            }
+        } else {
+            console.log('Error parameter not found or value is not verified');
+        }
+
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!-- views/register-ticket.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register New Ticket</title>
+</head>
+<body>
+    <h1>Scan your Ticket</h1>
+    <form id="registerForm" action="/scan" method="POST">
+        
+        <label for="fullname">Ticket:</label>
+        <input type="text" id="ticket" name="ticket" required><br><br>
+
+
+
+    </form>
+<a href="mailto:recipient@example.com?subject=Your%20Subject&body=Your%20Body%20Here%0ASecond%20Line%0AThird%20Line%0A%0ARegards%2C%0AYour%20Name">
+        Click here to send an email
+    <script>
+        // Check if the URL contains a success message
+        const urlParams = new URLSearchParams(window.location.search);
+        const successMessage = urlParams.get('message');
+        if (successMessage) {
+            alert(successMessage);
+        }
+
+        // Alternatively, you can use a JavaScript library like SweetAlert2 for a nicer alert:
+        // if (successMessage) {
+        //     Swal.fire('Success', successMessage, 'success');
+        // }
+    </script>
+</body>
+</html>

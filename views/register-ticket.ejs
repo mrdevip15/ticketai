@@ -1,0 +1,304 @@
+<!-- views/register-ticket.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register New Ticket</title>
+   <style>
+    @charset "UTF-8";
+/* #################### ################################ #################### */
+/* #################### RELEVANT CODE STARTS AT LINE 145 #################### */
+/* #################### ################################ #################### */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* Global Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: #EDEEE9;
+  /* #################### ########################### #################### */
+  /* #################### All form-related CSS below. #################### */
+  /* #################### ########################### #################### */
+}
+html body {
+  background-color: #def1fc;
+  color: #303030;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2.5vh 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+html body h1 {
+  font-size: clamp(1rem, 6vw, 10rem);
+  margin: 15vh 0 2rem;
+}
+html body a {
+  text-decoration: underline;
+  color: #303030;
+}
+html body code {
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  background-color: #91cff8;
+}
+html body .explanation {
+  width: 100%;
+  margin-bottom: 15vh;
+}
+html body .explanation p {
+  font-size: 1rem;
+  max-width: 75ch;
+  margin: 2rem 0;
+}
+html body .explanation ul:last-child {
+  margin-bottom: 2rem;
+}
+html body .explanation ul {
+  display: flex;
+  flex-direction: column;
+}
+html body .explanation ul li {
+  list-style: none;
+  position: relative;
+  margin: 0.5rem 0;
+}
+html body .explanation ul li::before {
+  content: "👉";
+  position: absolute;
+  top: -0.25rem;
+  left: -2rem;
+}
+html body .container {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 2rem 1.5rem;
+  background-color: #abe3ec;
+}
+@media (min-width: 768px) {
+  html body .container {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+html body .container .cta-form {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  html body .container .cta-form {
+    margin-bottom: 0;
+    margin-right: 2rem;
+    text-align: left;
+  }
+}
+html body .container .cta-form h2 {
+  font-size: 1.5rem;
+  width: 100%;
+  max-width: 25ch;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  html body .container .cta-form h2 {
+    text-align: left;
+    margin: 0;
+  }
+}
+html body .container .cta-form p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 24ch;
+}
+html .form {
+  align-self: center;
+}
+html .form__input {
+  width: clamp(120px, 50vw, 420px);
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  border: 1px solid #303030;
+  border-radius: 2px;
+  margin: 0.625rem auto;
+  transition: all 250ms;
+  /* When the input field (.form__input) is in focus, 
+     transform the .form__label and change colors*/
+  /* ALSO, if the input field's placeholder is NOT shown (when the input field has content),
+     transform the .form__label and change colors. */
+  /* THIS PART IS IMPORTANT!! */
+  /* The block below hides the placeholder entirely. */
+  /* For all intents and purposes, the placeholder no longer exists. */
+  /* What shows on the input field is only the label*. */
+  /* HOWEVER, the input fields still recognizes that the placeholder exists!*/
+  /* The placeholder is just invisible. We need the placeholder to exist for
+     some weird CSS stuff. If we skip this, we can't make it CSS-only. */
+  /* When the placeholder is NOT shown,
+     style the top border. */
+  /* This makes the top border fade-out when the placeholder disappears. */
+}
+@media (min-width: 768px) {
+  html .form__input {
+    width: clamp(120px, 35vw, 420px);
+  }
+}
+html .form__input:focus {
+  outline: none;
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+html .form__input:focus + .form__label, html .form__input:not(:placeholder-shown) + .form__label {
+  transform: translateY(-4.5rem) scale(1);
+  color: #303030;
+}
+html .form__input::placeholder {
+  display: none;
+  color: transparent;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+html .form__input:not(:placeholder-shown) {
+  border-top-color: rgba(0, 0, 0, 0.5);
+}
+html .form__label {
+  font-size: 1rem;
+  color: #909090;
+  display: block;
+  /* Moves the label on TOP of the placeholder */
+  /* You'll need to change this as needed */
+  transform: translate(1.25rem, -2.5rem);
+  transform-origin: 0 0;
+  /* Used later for transitions */
+  transition: all 500ms;
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+  /* THIS PART IS IMPORTANT! */
+  /* This line prevents the label from being selected.*/
+  /* This is crucial because if this line doesn't exist, users can
+     click on the label, instead of the input field. That's bad UX! */
+  pointer-events: none;
+}
+   </style>
+</head>
+<style>
+
+
+/* CSS */
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+</style>
+<body>
+    <h1 style="font-size: 48px;">MEDICAL TRYOUT BY AMSTERDAM INSTITUTE</h1>
+    <div class="container">
+      <div class="cta-form">
+        <h2>Isi formnya dulu!</h2> 
+      <p>Pastikan semua datamu benar ya.</p>
+      </div>
+      <form action="/register" class="form" method="POST">
+        
+        <input type="text" placeholder="Name" class="form__input" id="name"  name="fullname"/>
+        <label for="name" class="form__label">Nama lengkap</label>
+  
+        <input type="email" placeholder="Email" class="form__input" id="email" name="email" />
+        <label for="email" class="form__label">Email</label>
+  
+        <input type="text" placeholder="Subject" class="form__input" name="tel" />
+        <label for="subject" class="form__label">No WA</label>
+
+ 
+        <input type="text" placeholder="Subject" class="form__input" id="subject" name="sekolah" />
+        <label for="subject" class="form__label">Asal sekolah</label>
+
+        <input type="submit" class="button-5" >
+        
+      </form>
+    </div>
+    <div class="explanation">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in dictum neque, in ultricies risus. Vestibulum sed neque sapien. Morbi ultricies non
+      </p>
+      <ul>
+        <li>Sed congue sagittis eros, et pulvinar mi pharetra et. Nam ultrices, mauris in dapibus gravida, tellus libero feugiat ex</li>
+        <li>Suspendisse finibus elementum justo, vel sodales sem finibus eu.</li>
+        <li> Sed erat orci, venenatis vitae venenatis et, condimentum ac mauris. Suspendisse et quam ut mi consectetur consectetur</li>
+        
+      </ul>
+      <p>We'll be using several pseudo-selectors to create this effect.<br>This is the ONLY way to achieve this effect without any JavaScript.</p>
+      <ul>
+        <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:focus">:focus</a></code> — Represents an element (such as a form input) that has received focus.</li>
+        <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:not">:not()</a></code> — Prevents the items passed into the argument from being selected.</li>
+        <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::placeholder">:placeholder</a></code> — Represents the placeholder text of <code>input</code> and <code>textarea</code> elements.</li>
+        <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:placeholder-shown">:placeholder-shown</a></code> — Represents any <code>input</code> or <code>textarea</code> element that is currently displaying placeholder text.</li>
+      </ul>
+      <p>A non-SCSS version can be found <a href="https://codepen.io/kvncnls/pen/eYzbJJL" target="_blank">here</a> for those that don't use SCSS. Note that this older CodePen has a ROOT font-size of 10px, so any 'rem' values are based on 10px.</p>
+    </div>
+  </body>
+</html>

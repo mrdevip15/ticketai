@@ -1,0 +1,25 @@
+.row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    grid-template-rows: repeat(2, 1fr); /* n rows */
+    gap: 5px; /* Adjust this value to set the gap between grid items */
+  }
+  
+  .timeline.timeline-xs .timeline-item .timeline-item-marker .timeline-item-marker-text {
+    width: 100px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: black;
+  }
+  .card .card-header .card-toolbar {
+    display: flex;
+    align-items: center;
+    margin: .5rem 0;
+    flex-wrap: wrap;
+  }
+  #datatablesSimple thead {
+    display: none;
+}
+td p {
+  margin-bottom: 0 !important;
+}
